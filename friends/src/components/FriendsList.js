@@ -30,11 +30,7 @@ const FriendsList = () => {
   return (
     <div className="friends-list">
       <h1>List-O-Friends</h1>
-      <AddFriend
-        setFriends={setFriends}
-        loading={loading}
-        setLoading={setLoading}
-      />
+      <AddFriend />
       {loading && (
         <div className="loading-msg">
           <ClipLoader loading={loading} />
@@ -69,13 +65,6 @@ const FriendsList = () => {
           ))}
         </div>
       </div>
-
-      {/* {friends.map(friend => (
-        <div key={friend.id}>
-          {friend.name} {friend.age} {friend.email} <button>Edit</button>{" "}
-          <button>Delete</button>
-        </div>
-      ))} */}
     </div>
   );
 };

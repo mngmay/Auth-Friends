@@ -7,6 +7,7 @@ const Login = props => {
     username: "",
     password: ""
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = e => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -14,24 +15,24 @@ const Login = props => {
 
   const login = e => {
     e.preventDefault();
-    props.setLoading(true);
+    setLoading(true);
     axios
       .post("http://localhost:5000/api/login", credentials)
       .then(res => {
         console.log(res);
         localStorage.setItem("token", res.data.payload);
         props.history.push("/protected");
-        props.setLoading(false);
+        setLoading(false);
       })
       .catch(err => {
         console.log(err.response);
-        props.setLoading(false);
+        setLoading(false);
       });
   };
 
   return (
     <div>
-      {props.loading && (
+      {loading && (
         <div className="loading-msg">
           <ClipLoader loading={props.loading} />
         </div>

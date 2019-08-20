@@ -33,16 +33,6 @@ const AddFriend = ({ setFriends }) => {
       .catch(err => console.log(err.response));
   };
 
-  const editFriend = e => {
-    e.preventDefault();
-    axiosWithAuth()
-      .put("http://localhost:500/api/friends/:id", friendToEdit)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => console.log(err.response));
-  };
-
   return (
     <div className="friend-form">
       <form onSubmit={addFriend}>
