@@ -30,7 +30,7 @@ const FriendsList = () => {
   return (
     <div className="friends-list">
       <h1>List-O-Friends</h1>
-      <AddFriend />
+      <AddFriend setFriends={setFriends} />
       {loading && (
         <div className="loading-msg">
           <ClipLoader loading={loading} />
