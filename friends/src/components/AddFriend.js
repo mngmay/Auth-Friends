@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-const AddFriend = () => {
+const AddFriend = ({ setFriends }) => {
   const [newFriend, setNewFriend] = useState({ name: "", age: "", email: "" });
 
   const handleChange = e => {
@@ -13,7 +13,7 @@ const AddFriend = () => {
     axiosWithAuth()
       .post("http://localhost:5000/api/friends", newFriend)
       .then(res => {
-        console.log(res);
+        setFriends(res.data);
       })
       .catch(err => {
         console.log(err.response);

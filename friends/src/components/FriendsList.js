@@ -22,7 +22,7 @@ const FriendsList = () => {
 
   return (
     <div className="friends-list">
-      <AddFriend />
+      <AddFriend setFriends={setFriends} />
       {friends.map(friend => (
         <li key={friend.id}>{friend.name}</li>
       ))}
