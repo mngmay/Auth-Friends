@@ -7,6 +7,7 @@ const AddFriend = ({ setFriends }) => {
     age: "",
     email: ""
   });
+  const [friendToEdit, setFriendToEdit] = useState({});
 
   const handleChange = e => {
     if (e.target.name === "age") {
@@ -35,7 +36,7 @@ const AddFriend = ({ setFriends }) => {
   const editFriend = e => {
     e.preventDefault();
     axiosWithAuth()
-      .put("http://localhost:500/api/friends/:id", editFriend)
+      .put("http://localhost:500/api/friends/:id", friendToEdit)
       .then(res => {
         console.log(res);
       })
@@ -43,7 +44,7 @@ const AddFriend = ({ setFriends }) => {
   };
 
   return (
-    <div className="add-form">
+    <div className="friend-form">
       <form onSubmit={addFriend}>
         <input
           type="text"
