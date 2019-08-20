@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const Login = () => {
+const Login = props => {
   const [credentials, setCredentials] = useState({
     username: "",
     password: ""
@@ -20,6 +20,7 @@ const Login = () => {
       .then(res => {
         console.log(res);
         localStorage.setItem("token", res.data.payload);
+        props.history.push("/protected");
         setLoading(false);
       })
       .catch(err => {
