@@ -29,6 +29,7 @@ const FriendsList = () => {
 
   return (
     <div className="friends-list">
+      <h1>List-O-Friends</h1>
       <AddFriend
         setFriends={setFriends}
         loading={loading}
@@ -39,12 +40,42 @@ const FriendsList = () => {
           <ClipLoader loading={loading} />
         </div>
       )}
-      {friends.map(friend => (
+      <div className="categories">
+        <div className="name">
+          <span className="category-name">Name</span>
+          {friends.map(friend => (
+            <div key={friend.id}>{friend.name}</div>
+          ))}
+        </div>
+        <div className="age">
+          <span className="category-name">Age</span>
+          {friends.map(friend => (
+            <div key={friend.id}>{friend.age}</div>
+          ))}
+        </div>
+        <div className="email">
+          <span className="category-name">Email</span>
+          {friends.map(friend => (
+            <div key={friend.id}>{friend.email}</div>
+          ))}
+        </div>
+        <div className="buttons">
+          <span className="category-name">Edit/Delete</span>
+          {friends.map(friend => (
+            <div key={friend.id}>
+              <button>Edit</button>
+              <button>Delete</button>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* {friends.map(friend => (
         <div key={friend.id}>
           {friend.name} {friend.age} {friend.email} <button>Edit</button>{" "}
           <button>Delete</button>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 };
