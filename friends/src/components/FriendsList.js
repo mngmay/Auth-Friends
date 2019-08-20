@@ -31,11 +31,7 @@ const FriendsList = () => {
     <div className="friends-list">
       <h1>List-O-Friends</h1>
       <AddFriend setFriends={setFriends} />
-      {loading && (
-        <div className="loading-msg">
-          <ClipLoader loading={loading} />
-        </div>
-      )}
+
       <div className="categories">
         <div className="name">
           <span className="category-name">Name</span>
@@ -65,6 +61,11 @@ const FriendsList = () => {
           ))}
         </div>
       </div>
+      {loading && (
+        <div className="loading-msg">
+          <ClipLoader loading={loading} />
+        </div>
+      )}
     </div>
   );
 };

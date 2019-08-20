@@ -8,6 +8,7 @@ const AddFriend = ({ setFriends }) => {
     email: ""
   });
   const [friendToEdit, setFriendToEdit] = useState({});
+  const [removeFriend, setRemoveFriend] = useState({});
 
   const handleChange = e => {
     if (e.target.name === "age") {
@@ -32,6 +33,8 @@ const AddFriend = ({ setFriends }) => {
       })
       .catch(err => console.log(err.response));
   };
+
+  const deleteFriend = e => {};
 
   return (
     <div className="friend-form">
