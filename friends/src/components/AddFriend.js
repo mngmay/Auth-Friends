@@ -2,10 +2,24 @@ import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const AddFriend = ({ setFriends }) => {
-  const [newFriend, setNewFriend] = useState({ name: "", age: "", email: "" });
+  const [newFriend, setNewFriend] = useState({
+    name: "",
+    age: "",
+    email: ""
+  });
 
   const handleChange = e => {
-    setNewFriend({ ...newFriend, [e.target.name]: e.target.value });
+    if (e.target.name === "age") {
+      setNewFriend({
+        ...newFriend,
+        [e.target.name]: Number(e.target.value)
+      });
+    } else {
+      setNewFriend({
+        ...newFriend,
+        [e.target.name]: e.target.value
+      });
+    }
   };
 
   const addFriend = e => {
@@ -15,9 +29,17 @@ const AddFriend = ({ setFriends }) => {
       .then(res => {
         setFriends(res.data);
       })
-      .catch(err => {
-        console.log(err.response);
-      });
+      .catch(err => console.log(err.response));
+  };
+
+  const editFriend = e => {
+    e.preventDefault();
+    axiosWithAuth()
+      .put("http://localhost:500/api/friends/:id", editFriend)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err.response));
   };
 
   return (
