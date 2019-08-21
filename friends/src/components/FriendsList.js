@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import ClipLoader from "react-spinners/ClipLoader";
 
-import AddFriend from "./AddFriend";
+import FriendForm from "./FriendForm";
 
 const FriendsList = () => {
   const [friends, setFriends] = useState([]);
@@ -40,7 +40,7 @@ const FriendsList = () => {
   return (
     <div className="friends-list">
       <h1>List-O-Friends</h1>
-      <AddFriend setFriends={setFriends} />
+      <FriendForm setFriends={setFriends} />
 
       <div className="categories">
         <div className="name">

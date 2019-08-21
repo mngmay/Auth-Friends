@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-const AddFriend = ({ setFriends }) => {
+const FriendForm = ({ setFriends }) => {
   const [newFriend, setNewFriend] = useState({
     name: "",
     age: "",
     email: ""
   });
   const [friendToEdit, setFriendToEdit] = useState({});
-  const [removeFriend, setRemoveFriend] = useState({});
 
   const handleChange = e => {
     if (e.target.name === "age") {
@@ -33,8 +32,6 @@ const AddFriend = ({ setFriends }) => {
       })
       .catch(err => console.log(err.response));
   };
-
-  const deleteFriend = e => {};
 
   return (
     <div className="friend-form">
@@ -63,4 +60,4 @@ const AddFriend = ({ setFriends }) => {
   );
 };
 
-export default AddFriend;
+export default FriendForm;
