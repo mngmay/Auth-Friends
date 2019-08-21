@@ -17,29 +17,25 @@ const FriendsList = () => {
 
   const handleChange = e => {
     if (friendToEdit) {
-      if (e.target.name === "age") {
-        setFriendToEdit({
-          ...friendToEdit,
-          [e.target.name]: Number(e.target.value)
-        });
-      } else {
-        setFriendToEdit({
-          ...friendToEdit,
-          [e.target.name]: e.target.value
-        });
-      }
+      e.target.name === "age"
+        ? setFriendToEdit({
+            ...friendToEdit,
+            [e.target.name]: Number(e.target.value)
+          })
+        : setFriendToEdit({
+            ...friendToEdit,
+            [e.target.name]: e.target.value
+          });
     } else {
-      if (e.target.name === "age") {
-        setNewFriend({
-          ...newFriend,
-          [e.target.name]: Number(e.target.value)
-        });
-      } else {
-        setNewFriend({
-          ...newFriend,
-          [e.target.name]: e.target.value
-        });
-      }
+      e.target.name === "age"
+        ? setNewFriend({
+            ...newFriend,
+            [e.target.name]: Number(e.target.value)
+          })
+        : setNewFriend({
+            ...newFriend,
+            [e.target.name]: e.target.value
+          });
     }
   };
 
