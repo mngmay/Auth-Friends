@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "name": "project-name",
+  "name": "friends",
   "builds": [
     {
-      "src": "project-name/package.json",
+      "src": "friends/package.json",
       "use": "@now/static-build",
       "config": { "distDir": "build" }
     }
   ],
-  "routes": [{ "src": "/(.*)", "dest": "project-name/$1" }]
+  "routes": [{ "src": "/(.*)", "dest": "friends/$1" }]
 }
