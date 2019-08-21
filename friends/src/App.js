@@ -3,6 +3,7 @@ import { Route, NavLink } from "react-router-dom";
 
 import Login from "./components/Login";
 import FriendsList from "./components/FriendsList";
+import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           Friends List
         </NavLink>
       </div>
+      <Header />
       <div className="components">
         <Route path="/login" component={Login} />
         <PrivateRoute exact path="/protected" component={FriendsList} />

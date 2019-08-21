@@ -7,6 +7,8 @@ import FriendForm from "./FriendForm";
 const FriendsList = () => {
   const [friends, setFriends] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [friendToEdit, setFriendToEdit] = useState({});
+  console.log("To Edit", friendToEdit);
 
   useEffect(() => {
     getData();
@@ -39,7 +41,6 @@ const FriendsList = () => {
 
   return (
     <div className="friends-list">
-      <h1>List-O-Friends</h1>
       <FriendForm setFriends={setFriends} />
 
       <div className="categories">
@@ -65,7 +66,7 @@ const FriendsList = () => {
           <span className="category-name">Edit/Delete</span>
           {friends.map(friend => (
             <div key={friend.id}>
-              <button>Edit</button>
+              <button onClick={() => setFriendToEdit(friend)}>Edit</button>
               <button
                 onClick={() => {
                   deleteFriend(friend.id);
