@@ -1,60 +1,39 @@
-import React, { useState } from "react";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import React from "react";
 
-const FriendForm = ({ setFriends }) => {
-  const [newFriend, setNewFriend] = useState({
-    name: "",
-    age: "",
-    email: ""
-  });
-  const [friendToEdit, setFriendToEdit] = useState({});
-
-  const handleChange = e => {
-    if (e.target.name === "age") {
-      setNewFriend({
-        ...newFriend,
-        [e.target.name]: Number(e.target.value)
-      });
-    } else {
-      setNewFriend({
-        ...newFriend,
-        [e.target.name]: e.target.value
-      });
-    }
-  };
-
-  const addFriend = e => {
-    e.preventDefault();
-    axiosWithAuth()
-      .post("http://localhost:5000/api/friends", newFriend)
-      .then(res => {
-        setFriends(res.data);
-      })
-      .catch(err => console.log(err.response));
-  };
-
+const FriendForm = ({
+  setFriends,
+  friendToEdit,
+  addFriend,
+  editFriend,
+  handleChange,
+  newFriend,
+  setNewFriend
+}) => {
   return (
     <div className="friend-form">
-      <form onSubmit={addFriend}>
+      <form onSubmit={friendToEdit ? editFriend : addFriend}>
         <input
           type="text"
           name="name"
           placeholder="Friend's Name"
+          value={friendToEdit ? friendToEdit.name : newFriend.name}
           onChange={handleChange}
         />
         <input
           type="number"
           name="age"
           placeholder="Age"
+          value={friendToEdit ? friendToEdit.age : newFriend.age}
           onChange={handleChange}
         />
         <input
           type="email"
           name="email"
           placeholder="Email"
+          value={friendToEdit ? friendToEdit.email : newFriend.email}
           onChange={handleChange}
         />
-        <button>Add Friend</button>
+        <button>{friendToEdit ? "Update Friend" : "Add Friend"}</button>
       </form>
     </div>
   );

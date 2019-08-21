@@ -7,8 +7,41 @@ import FriendForm from "./FriendForm";
 const FriendsList = () => {
   const [friends, setFriends] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [friendToEdit, setFriendToEdit] = useState({});
-  console.log("To Edit", friendToEdit);
+  const [newFriend, setNewFriend] = useState({
+    name: "",
+    age: "",
+    email: ""
+  });
+
+  const [friendToEdit, setFriendToEdit] = useState("");
+
+  const handleChange = e => {
+    if (friendToEdit) {
+      if (e.target.name === "age") {
+        setFriendToEdit({
+          ...friendToEdit,
+          [e.target.name]: Number(e.target.value)
+        });
+      } else {
+        setFriendToEdit({
+          ...friendToEdit,
+          [e.target.name]: e.target.value
+        });
+      }
+    } else {
+      if (e.target.name === "age") {
+        setNewFriend({
+          ...newFriend,
+          [e.target.name]: Number(e.target.value)
+        });
+      } else {
+        setNewFriend({
+          ...newFriend,
+          [e.target.name]: e.target.value
+        });
+      }
+    }
+  };
 
   useEffect(() => {
     getData();
@@ -22,12 +55,22 @@ const FriendsList = () => {
       .then(res => {
         setFriends(res.data);
         setLoading(false);
-        console.log(res.data);
       })
       .catch(err => {
         setLoading(false);
         console.log(err.response);
       });
+  };
+
+  const addFriend = e => {
+    e.preventDefault();
+    axiosWithAuth()
+      .post("http://localhost:5000/api/friends", newFriend)
+      .then(res => {
+        setFriends(res.data);
+      })
+      .catch(err => console.log(err.response));
+    setNewFriend({ name: "", age: "", email: "" });
   };
 
   const deleteFriend = id => {
@@ -39,9 +82,32 @@ const FriendsList = () => {
       .catch(err => console.log(err));
   };
 
+  const editFriend = e => {
+    e.preventDefault();
+    friendToEdit &&
+      axiosWithAuth()
+        .put(
+          `http://localhost:5000/api/friends/${friendToEdit.id}`,
+          friendToEdit
+        )
+        .then(res => {
+          setFriends(res.data);
+        })
+        .catch(err => console.log(err));
+    setFriendToEdit("");
+  };
+
   return (
     <div className="friends-list">
-      <FriendForm setFriends={setFriends} />
+      <FriendForm
+        setFriends={setFriends}
+        friendToEdit={friendToEdit}
+        handleChange={handleChange}
+        addFriend={addFriend}
+        editFriend={editFriend}
+        newFriend={newFriend}
+        setNewFriend={setNewFriend}
+      />
 
       <div className="categories">
         <div className="name">
